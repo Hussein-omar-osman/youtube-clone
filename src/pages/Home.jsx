@@ -1,6 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, CSSProperties } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
+import MoonLoader from 'react-spinners/MoonLoader';
+
+const override = {
+  display: 'block',
+  margin: '100px auto',
+  borderColor: 'red',
+};
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +18,7 @@ const Container = styled.div`
 
 const Home = () => {
   const [result, setResult] = useState([]);
-  console.log(result);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     const options = {
@@ -29,6 +36,7 @@ const Home = () => {
     let data = await res.json();
     console.log(data);
     setResult(data.contents);
+    setLoading(false);
     console.log(result);
   };
 
@@ -38,6 +46,12 @@ const Home = () => {
 
   return (
     <Container>
+      <MoonLoader
+        color={'blue'}
+        loading={loading}
+        cssOverride={override}
+        size={80}
+      />
       {result &&
         result.map((item, index) => (
           <Card
