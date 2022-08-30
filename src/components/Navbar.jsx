@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const Search = styled.div`
-  width: 40%;
+  width: 50%;
   position: absolute;
   left: 0px;
   right: 0px;
@@ -36,6 +36,7 @@ const Search = styled.div`
 
 const Input = styled.input`
   border: none;
+  flex: 2;
   background-color: transparent;
   outline: none;
   color: ${({ theme }) => theme.text};
@@ -58,8 +59,19 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder='Search' />
-          <SearchOutlinedIcon />
+          <Input placeholder='Search...' />
+          <div
+            style={{
+              background: 'white',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: '15px',
+              padding: '2px',
+            }}
+          >
+            <SearchOutlinedIcon />
+          </div>
         </Search>
         <Link to='signin' style={{ textDecoration: 'none' }}>
           <Button>
