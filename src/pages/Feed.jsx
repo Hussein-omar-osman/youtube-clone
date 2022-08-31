@@ -38,7 +38,7 @@ const Feed = () => {
       options
     );
     let data = await res.json();
-    console.log(data);
+    console.log(data.contents);
     setResult(data.contents);
     setLoading(false);
     console.log(result);
@@ -63,6 +63,7 @@ const Feed = () => {
             key={index}
             videoId={item?.video?.videoId}
             title={item?.video?.title}
+            authorTitle={item?.video?.author?.title}
             avatarImg={item?.video?.author?.avatar[0]?.url}
             thumbImg={item?.video?.thumbnails[0]?.url}
             totalViews={item?.video?.stats?.views}

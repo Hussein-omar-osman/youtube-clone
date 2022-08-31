@@ -58,6 +58,7 @@ const Home = () => {
             key={index}
             videoId={item.video.videoId}
             title={item.video.title}
+            authorTitle={item?.video?.author?.title}
             avatarImg={item.video.author.avatar[0].url}
             thumbImg={item.video.thumbnails[0].url}
             totalViews={item.video.stats.views}

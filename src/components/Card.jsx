@@ -41,7 +41,7 @@ const Title = styled.h1`
 `;
 
 const ChannelName = styled.h2`
-  font-size: 14px;
+  font-size: 12px;
   color: ${({ theme }) => theme.textSoft};
   margin: 9px 0px;
 `;
@@ -59,6 +59,7 @@ const Card = ({
   thumbImg,
   totalViews,
   publishedTime,
+  authorTitle,
 }) => {
   return (
     <Link to='/video/test' style={{ textDecoration: 'none' }}>
@@ -68,7 +69,7 @@ const Card = ({
           <ChannelImage type={type} src={avatarImg} />
           <Texts>
             <Title>{title}</Title>
-            <ChannelName>Lama Dev</ChannelName>
+            <ChannelName>{authorTitle}</ChannelName>
             <Info>
               {totalViews} views • {publishedTime}
             </Info>
