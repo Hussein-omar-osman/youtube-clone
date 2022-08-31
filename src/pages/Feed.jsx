@@ -2,6 +2,7 @@ import React, { useEffect, useState, CSSProperties } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
 import MoonLoader from 'react-spinners/MoonLoader';
+import { useParams } from 'react-router-dom';
 
 const override = {
   display: 'block',
@@ -18,9 +19,12 @@ const Container = styled.div`
 
 const Feed = () => {
   const [result, setResult] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const { name } = useParams();
+  console.log(name);
 
   const fetchData = async () => {
+    setLoading(true);
     const options = {
       method: 'GET',
       headers: {
@@ -30,7 +34,7 @@ const Feed = () => {
     };
 
     let res = await fetch(
-      'https://youtube138.p.rapidapi.com/search/?q=new',
+      `https://youtube138.p.rapidapi.com/search/?q=${name}`,
       options
     );
     let data = await res.json();
@@ -41,8 +45,9 @@ const Feed = () => {
   };
 
   useEffect(() => {
+    setResult([]);
     fetchData();
-  }, []);
+  }, [name]);
 
   return (
     <Container>
@@ -56,12 +61,12 @@ const Feed = () => {
         result.map((item, index) => (
           <Card
             key={index}
-            videoId={item.video.videoId}
-            title={item.video.title}
-            avatarImg={item.video.author.avatar[0].url}
-            thumbImg={item.video.thumbnails[0].url}
-            totalViews={item.video.stats.views}
-            publishedTime={item.video.publishedTimeText}
+            videoId={item?.video?.videoId}
+            title={item?.video?.title}
+            avatarImg={item?.video?.author?.avatar[0]?.url}
+            thumbImg={item?.video?.thumbnails[0]?.url}
+            totalViews={item?.video?.stats?.views}
+            publishedTime={item?.video?.publishedTimeText}
           />
         ))}
     </Container>

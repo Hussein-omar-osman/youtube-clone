@@ -116,26 +116,51 @@ const Menu = ({ darkMode, setDarkMode }) => {
         </Item>
         <Hr />
 
-        <Item>
-          <LibraryMusicOutlinedIcon />
-          Music
-        </Item>
-        <Item>
-          <SportsBasketballOutlinedIcon />
-          Sports
-        </Item>
-        <Item>
-          <SportsEsportsOutlinedIcon />
-          Gaming
-        </Item>
-        <Item>
-          <MovieOutlinedIcon />
-          Movies
-        </Item>
-        <Item>
-          <ArticleOutlinedIcon />
-          News
-        </Item>
+        <Link
+          to={'/feed/Music'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Item>
+            <LibraryMusicOutlinedIcon />
+            Music
+          </Item>
+        </Link>
+        <Link
+          to={'/feed/Sports'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Item>
+            <SportsBasketballOutlinedIcon />
+            Sports
+          </Item>
+        </Link>
+        <Link
+          to={'/feed/Gaming'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Item>
+            <SportsEsportsOutlinedIcon />
+            Gaming
+          </Item>
+        </Link>
+        <Link
+          to={'/feed/Movies'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Item>
+            <MovieOutlinedIcon />
+            Movies
+          </Item>
+        </Link>
+        <Link
+          to={'/feed/News'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Item>
+            <ArticleOutlinedIcon />
+            News
+          </Item>
+        </Link>
 
         <Hr />
         <Item>
