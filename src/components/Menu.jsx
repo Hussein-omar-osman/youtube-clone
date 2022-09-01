@@ -11,6 +11,8 @@ import SportsEsportsOutlinedIcon from '@mui/icons-material/SportsEsportsOutlined
 import SportsBasketballOutlinedIcon from '@mui/icons-material/SportsBasketballOutlined';
 import MovieOutlinedIcon from '@mui/icons-material/MovieOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined';
+import AirplayOutlinedIcon from '@mui/icons-material/AirplayOutlined';
 import LiveTvOutlinedIcon from '@mui/icons-material/LiveTvOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
@@ -117,7 +119,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
         <Hr />
 
         <Link
-          to={'/feed/Music'}
+          to={'/feed/music videos'}
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
           <Item>
@@ -144,7 +146,7 @@ const Menu = ({ darkMode, setDarkMode }) => {
           </Item>
         </Link>
         <Link
-          to={'/feed/Movies'}
+          to={'/feed/movie trailers'}
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
           <Item>
@@ -153,12 +155,21 @@ const Menu = ({ darkMode, setDarkMode }) => {
           </Item>
         </Link>
         <Link
-          to={'/feed/News'}
+          to={'/feed/tv series'}
           style={{ textDecoration: 'none', color: 'inherit' }}
         >
           <Item>
-            <ArticleOutlinedIcon />
-            News
+            <AirplayOutlinedIcon />
+            Tv Shows
+          </Item>
+        </Link>
+        <Link
+          to={'/feed/programming'}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <Item>
+            <CodeOutlinedIcon />
+            Coding
           </Item>
         </Link>
 

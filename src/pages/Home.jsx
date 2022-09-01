@@ -35,6 +35,7 @@ const Home = () => {
     );
     let data = await res.json();
     console.log(data);
+    console.log(data.contents);
     setResult(data.contents);
     setLoading(false);
     console.log(result);
@@ -52,7 +53,7 @@ const Home = () => {
         cssOverride={override}
         size={80}
       />
-      {result &&
+      {result ? (
         result.map((item, index) => (
           <Card
             key={index}
@@ -64,7 +65,10 @@ const Home = () => {
             totalViews={item.video.stats.views}
             publishedTime={item.video.publishedTimeText}
           />
-        ))}
+        ))
+      ) : (
+        <h2>Results not found</h2>
+      )}
     </Container>
   );
 };

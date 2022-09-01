@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import viewCount from '../utils/viewCount';
 
 const Container = styled.div`
   width: ${(props) => props.type !== 'sm' && '360px'};
@@ -71,7 +72,7 @@ const Card = ({
             <Title>{title}</Title>
             <ChannelName>{authorTitle}</ChannelName>
             <Info>
-              {totalViews} views • {publishedTime}
+              {viewCount(totalViews)} • {publishedTime}
             </Info>
           </Texts>
         </Details>

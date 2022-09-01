@@ -22,6 +22,7 @@ const Feed = () => {
   const [loading, setLoading] = useState(false);
   const { name } = useParams();
   console.log(name);
+  console.log(result);
 
   const fetchData = async () => {
     setLoading(true);
@@ -38,16 +39,20 @@ const Feed = () => {
       options
     );
     let data = await res.json();
+    console.log(data);
     console.log(data.contents);
-    setResult(data.contents);
+    let finalRes = data.contents.filter((item) => item.type === 'video');
+    setResult([...finalRes]);
     setLoading(false);
+    console.log(result);
     console.log(result);
   };
 
   useEffect(() => {
-    setResult([]);
     fetchData();
+    return () => setResult([]);
   }, [name]);
+  console.log(result);
 
   return (
     <Container>
@@ -57,7 +62,7 @@ const Feed = () => {
         cssOverride={override}
         size={80}
       />
-      {result &&
+      {result ? (
         result.map((item, index) => (
           <Card
             key={index}
@@ -69,7 +74,10 @@ const Feed = () => {
             totalViews={item?.video?.stats?.views}
             publishedTime={item?.video?.publishedTimeText}
           />
-        ))}
+        ))
+      ) : (
+        <h2>Results not found</h2>
+      )}
     </Container>
   );
 };
