@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import Comment from "./Comment";
+import React from 'react';
+import styled from 'styled-components';
+import Comment from './Comment';
 
 const Container = styled.div``;
 
@@ -26,20 +26,23 @@ const Input = styled.input`
   width: 100%;
 `;
 
-const Comments = () => {
+const Comments = ({ data }) => {
   return (
     <Container>
       <NewComment>
-        <Avatar src="https://yt3.ggpht.com/yti/APfAmoE-Q0ZLJ4vk3vqmV4Kwp0sbrjxLyB8Q4ZgNsiRH=s88-c-k-c0x00ffffff-no-rj-mo" />
-        <Input placeholder="Add a comment..." />
+        <Avatar src='https://yt3.ggpht.com/yti/APfAmoE-Q0ZLJ4vk3vqmV4Kwp0sbrjxLyB8Q4ZgNsiRH=s88-c-k-c0x00ffffff-no-rj-mo' />
+        <Input placeholder='Add a comment...' />
       </NewComment>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
-      <Comment/>
+      <Comment />
+      {data?.map((item) => (
+        <Comment
+          key={item.commentId}
+          user={item.author.title}
+          userImg={item.author.avatar[0].url}
+          content={item.content}
+          time={item.publishedTimeText}
+        />
+      ))}
     </Container>
   );
 };

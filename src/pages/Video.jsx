@@ -8,6 +8,8 @@ import Comments from '../components/Comments';
 import Card from '../components/Card';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useState } from 'react';
+import viewCount from '../utils/viewCount';
 
 const Container = styled.div`
   display: flex;
@@ -108,8 +110,14 @@ const Subscribe = styled.button`
 
 const Video = () => {
   const { id } = useParams();
+  const [details, setDetails] = useState({});
+  const [comments, setComments] = useState({});
 
-  const fetchDetails = () => {
+  const detailsUrl = `https://youtube138.p.rapidapi.com/video/details/?id=${id}&hl=en&gl=US`;
+  const relatedUrl = `https://youtube138.p.rapidapi.com/video/related-contents/?id=${id}&hl=en&gl=US`;
+  const commentsUrl = `https://youtube138.p.rapidapi.com/video/comments/?id=${id}&hl=en&gl=US`;
+
+  const fetchData = (url, callBackFunc) => {
     const options = {
       method: 'GET',
       headers: {
@@ -118,17 +126,18 @@ const Video = () => {
       },
     };
 
-    fetch(
-      `https://youtube138.p.rapidapi.com/video/details/?id=${id}&hl=en&gl=US`,
-      options
-    )
+    fetch(url, options)
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => {
+        console.log(response);
+        callBackFunc(response);
+      })
       .catch((err) => console.error(err));
   };
 
   useEffect(() => {
-    fetchDetails();
+    fetchData(detailsUrl, setDetails);
+    fetchData(commentsUrl, setComments);
   }, [id]);
 
   return (
@@ -146,12 +155,14 @@ const Video = () => {
             allowFullScreen
           ></iframe>
         </VideoWrapper>
-        <Title>Test Video</Title>
+        <Title>{details.title}</Title>
         <Details>
-          <Info>7,948,154 views • Jun 22, 2022</Info>
+          <Info>
+            {viewCount(details?.stats?.views)} views • {details?.publishedDate}
+          </Info>
           <Buttons>
             <Button>
-              <ThumbUpOutlinedIcon /> 123
+              <ThumbUpOutlinedIcon /> {viewCount(details?.stats?.likes)}
             </Button>
             <Button>
               <ThumbDownOffAltOutlinedIcon /> Dislike
@@ -167,22 +178,19 @@ const Video = () => {
         <Hr />
         <Channel>
           <ChannelInfo>
-            <Image src='https://yt3.ggpht.com/yti/APfAmoE-Q0ZLJ4vk3vqmV4Kwp0sbrjxLyB8Q4ZgNsiRH=s88-c-k-c0x00ffffff-no-rj-mo' />
+            <Image src={details?.author?.avatar[0].url} />
             <ChannelDetail>
-              <ChannelName>Lama Dev</ChannelName>
-              <ChannelCounter>200K subscribers</ChannelCounter>
-              <Description>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Doloribus laborum delectus unde quaerat dolore culpa sit aliquam
-                at. Vitae facere ipsum totam ratione exercitationem. Suscipit
-                animi accusantium dolores ipsam ut.
-              </Description>
+              <ChannelName>{details?.author?.title}</ChannelName>
+              <ChannelCounter>
+                {details?.author?.stats?.subscribersText}
+              </ChannelCounter>
+              <Description>{details?.description}</Description>
             </ChannelDetail>
           </ChannelInfo>
           <Subscribe>SUBSCRIBE</Subscribe>
         </Channel>
         <Hr />
-        <Comments />
+        {comments && <Comments data={comments.comments} />}
       </Content>
       <Recommendation>
         {/* <Card type='sm' />

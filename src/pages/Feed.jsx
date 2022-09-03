@@ -1,4 +1,4 @@
-import React, { useEffect, useState, CSSProperties } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Card from '../components/Card';
 import MoonLoader from 'react-spinners/MoonLoader';

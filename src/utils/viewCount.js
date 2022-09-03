@@ -1,4 +1,5 @@
 const viewCount = (views) => {
+  if (views === undefined) return;
   let arr_num = Array.from(views?.toString()).map(Number);
   if (arr_num.length < 4) {
     return `${views}`;
