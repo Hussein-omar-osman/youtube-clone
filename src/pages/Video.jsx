@@ -7,6 +7,7 @@ import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../components/Comments';
 import Card from '../components/Card';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Container = styled.div`
   display: flex;
@@ -107,6 +108,29 @@ const Subscribe = styled.button`
 
 const Video = () => {
   const { id } = useParams();
+
+  const fetchDetails = () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '1fa41a6d30msh4c5343aa94a66fcp1c08f6jsn9a4897ce4c15',
+        'X-RapidAPI-Host': 'youtube138.p.rapidapi.com',
+      },
+    };
+
+    fetch(
+      `https://youtube138.p.rapidapi.com/video/details/?id=${id}&hl=en&gl=US`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    fetchDetails();
+  }, [id]);
+
   return (
     <Container>
       <Content>

@@ -72,7 +72,7 @@ const Card = ({
             <Title>{title}</Title>
             <ChannelName>{authorTitle}</ChannelName>
             <Info>
-              {viewCount(totalViews)} • {publishedTime}
+              {viewCount(totalViews)} views • {publishedTime}
             </Info>
           </Texts>
         </Details>
