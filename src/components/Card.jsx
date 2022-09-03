@@ -63,7 +63,7 @@ const Card = ({
   authorTitle,
 }) => {
   return (
-    <Link to='/video/test' style={{ textDecoration: 'none' }}>
+    <Link to={`/video/${videoId}`} style={{ textDecoration: 'none' }}>
       <Container type={type}>
         <Image type={type} src={thumbImg} />
         <Details type={type}>

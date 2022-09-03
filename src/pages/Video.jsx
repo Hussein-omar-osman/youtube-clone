@@ -6,6 +6,7 @@ import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../components/Comments';
 import Card from '../components/Card';
+import { useParams } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
@@ -105,6 +106,7 @@ const Subscribe = styled.button`
 `;
 
 const Video = () => {
+  const { id } = useParams();
   return (
     <Container>
       <Content>
@@ -112,11 +114,12 @@ const Video = () => {
           <iframe
             width='100%'
             height='520'
-            src='https://www.youtube.com/embed/CevxZvSJLk8'
+            src={`https://www.youtube.com/embed/${id}`}
             title='YouTube video player'
-            frameborder='0'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowfullscreen
+            frameBorder='0'
+            autoPlay='0'
+            allow='accelerometer;  clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
           ></iframe>
         </VideoWrapper>
         <Title>Test Video</Title>
@@ -158,7 +161,7 @@ const Video = () => {
         <Comments />
       </Content>
       <Recommendation>
-        <Card type='sm' />
+        {/* <Card type='sm' />
         <br />
         <Card type='sm' />
         <br />
@@ -169,7 +172,10 @@ const Video = () => {
         <Card type='sm' />
         <br />
         <Card type='sm' />
-        <br />
+        <br /> */}
+        <div>
+          <h5>Recomended will appear heare</h5>
+        </div>
       </Recommendation>
     </Container>
   );
