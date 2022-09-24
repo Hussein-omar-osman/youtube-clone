@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   position: sticky;
@@ -55,20 +55,35 @@ const Button = styled.button`
   gap: 5px;
 `;
 const Navbar = () => {
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  console.log(search);
+
+  const handleSubmit = () => {
+    if (search === '') return;
+    navigate(`/search/${search}`);
+  };
+
   return (
     <Container>
       <Wrapper>
         <Search>
-          <Input placeholder='Search...' />
+          <Input
+            placeholder='Search...'
+            name='search'
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <div
             style={{
-              background: 'white',
+              background: 'grey',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: '15px',
               padding: '2px',
             }}
+            onClick={handleSubmit}
           >
             <SearchOutlinedIcon />
           </div>

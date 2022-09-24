@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Video from './pages/Video';
 import SignIn from './pages/SignIn';
 import Feed from './pages/Feed';
+import Search from './pages/Search';
 
 const Container = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ function App() {
                   <Route index element={<Home />} />
                   <Route path='signin' element={<SignIn />} />
                   <Route path='feed/:name' element={<Feed />} />
+                  <Route path='search/:searchTerm' element={<Search />} />
                   <Route path='video'>
                     <Route path=':id' element={<Video />} />
                   </Route>
